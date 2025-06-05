@@ -107,18 +107,17 @@ const data = [
 ];
 
 export default function Barchart() {
-  const ticks = [0, 70];
-
   return (
     <ResponsiveContainer width={800} height={300} className="bg-[#f5f5f5]">
       <BarChart
         data={data}
-        margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+        margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
         barGap={20}
       >
         <CartesianGrid horizontal={false} vertical={false} />
-        <ReferenceLine y="70" stroke="#ccc" yAxisId="right" />
-        <ReferenceLine y="2000" stroke="#ccc" yAxisId="left" />
+        <ReferenceLine y="71" stroke="#282D30" yAxisId="right" />
+        <ReferenceLine y="73" stroke="#282D30" yAxisId="right" />
+        <ReferenceLine y="2000" stroke="#E60000" yAxisId="left" />
         <XAxis dataKey="date" tickLine={false} tickMargin={10} />
 
         <YAxis
@@ -132,7 +131,8 @@ export default function Barchart() {
           orientation="right"
           axisLine={false}
           tickLine={false}
-          ticks={ticks}
+          domain={[69, 73.5]}
+          ticks={[69, 71, 73]}
         />
 
         <Bar

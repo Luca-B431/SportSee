@@ -1,5 +1,6 @@
 import type { Route } from "./+types/page";
-import Barchart from "~/components/graph1";
+import Barchart from "~/components/barchart";
+import Linechart from "~/components/linechart";
 
 // export function loader({ params }: Route.LoaderArgs) {
 //   const userId = params
@@ -28,9 +29,9 @@ export default function Home() {
 
           {/* Graph container */}
           <div className="grid grid-cols-2 py-16">
-            {/* chart
-             */}
+            {/* Barchart Calories/Poids */}
             <Barchart />
+            <Linechart />
           </div>
         </div>
       </div>
