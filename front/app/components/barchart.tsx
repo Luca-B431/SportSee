@@ -149,7 +149,7 @@ export default function Barchart() {
           barSize={10}
           radius={[10, 10, 0, 0]}
         />
-        <Tooltip />
+        <Tooltip cursor={{ fill: "rgba(0, 0, 0, 0.05)" }} />
         <Legend
           formatter={(value) => {
             switch (value) {

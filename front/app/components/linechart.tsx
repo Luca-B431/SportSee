@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import { LineChart, Line, XAxis, YAxis, Tooltip, Legend } from "recharts";
 import type { TooltipProps } from "recharts";
 
@@ -21,6 +22,8 @@ const data = [
 ];
 
 export default function Linechart() {
+  const [hovered, setHovered] = useState(false);
+
   // Legend custom
   const CustomLegend = () => (
     <div
@@ -29,7 +32,8 @@ export default function Linechart() {
       Durée moyenne des <br /> sessions
     </div>
   );
-  //   Tooltip custom pour afficher la durée au survol sur le graph
+
+  // Tooltip custom
   const CustomTooltip = ({ active, payload }: TooltipProps<number, string>) => {
     if (active && payload && payload.length) {
       const value = payload[0].value;
@@ -48,10 +52,9 @@ export default function Linechart() {
     return null;
   };
 
-  //   ActiveDot non visible sur le premier élément
+  // ActiveDot custom
   const customActiveDot = (props: any) => {
     const { cx, cy, r = 4, index } = props;
-    // Hide the first dot by rendering a transparent circle with radius 0
     if (index === 0 || cx === undefined || cy === undefined) {
       return (
         <circle
@@ -76,9 +79,12 @@ export default function Linechart() {
         width: 350,
         height: 300,
         borderRadius: 5,
+        position: "relative",
       }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
     >
-      <div style={{ width: 350, height: 300 }}>
+      <div style={{ width: 700, height: 300 }}>
         <LineChart
           data={data}
           width={700}
@@ -107,6 +113,25 @@ export default function Linechart() {
           />
         </LineChart>
       </div>
+
+      {hovered && (
+        <div
+          style={{
+            position: "absolute",
+            top: 40,
+            right: 20,
+            color: "#FFF8",
+            fontSize: 14,
+            fontWeight: 800,
+            display: "flex",
+            alignItems: "center",
+            gap: 6,
+            userSelect: "none",
+          }}
+        >
+          <span>Faites défiler →</span>
+        </div>
+      )}
     </div>
   );
 }

@@ -2,6 +2,7 @@ import type { Route } from "./+types/page";
 import Barchart from "~/components/barchart";
 import Linechart from "~/components/linechart";
 import SimpleRadarChart from "~/components/radarchart";
+import SimpleRadialBarChart from "~/components/radialbarchart";
 
 // export function loader({ params }: Route.LoaderArgs) {
 //   const userId = params
@@ -18,7 +19,7 @@ export function meta({}: Route.MetaArgs) {
 export default function Home() {
   return (
     <main>
-      <div className="h-screen w-full px-24 py-16">
+      <div className="h-screen w-full px-24 py-12">
         <div id="content">
           <h1 className="text-5xl font-bold pb-8">
             {" "}
@@ -36,6 +37,7 @@ export default function Home() {
             <div className="flex row-start-2 justify-between h-auto gap-8">
               <Linechart />
               <SimpleRadarChart />
+              <SimpleRadialBarChart />
             </div>
           </div>
         </div>
