@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { LineChart, Line, XAxis, YAxis, Tooltip, Legend } from "recharts";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
 import type { TooltipProps } from "recharts";
 
 const data = [
@@ -24,7 +32,6 @@ const data = [
 export default function Linechart() {
   const [hovered, setHovered] = useState(false);
 
-  // Legend custom
   const CustomLegend = () => (
     <div
       style={{ color: "#FFF8", fontSize: 14, fontWeight: 800, paddingLeft: 20 }}
@@ -33,14 +40,11 @@ export default function Linechart() {
     </div>
   );
 
-  // Tooltip custom
   const CustomTooltip = ({ active, payload }: TooltipProps<number, string>) => {
     if (active && payload && payload.length) {
       const value = payload[0].value;
       const label = payload[0].payload.day;
-
       if (!label) return null;
-
       return (
         <div
           style={{ background: "#FFF", padding: "4px 8px", borderRadius: 4 }}
@@ -52,7 +56,6 @@ export default function Linechart() {
     return null;
   };
 
-  // ActiveDot custom
   const customActiveDot = (props: any) => {
     const { cx, cy, r = 4, index } = props;
     if (index === 0 || cx === undefined || cy === undefined) {
@@ -84,11 +87,9 @@ export default function Linechart() {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      <div style={{ width: 700, height: 300 }}>
+      <ResponsiveContainer width="200%" height="100%">
         <LineChart
           data={data}
-          width={700}
-          height={300}
           margin={{ top: 40, right: 0, bottom: 20, left: 0 }}
         >
           <XAxis
@@ -112,7 +113,7 @@ export default function Linechart() {
             type="natural"
           />
         </LineChart>
-      </div>
+      </ResponsiveContainer>
 
       {hovered && (
         <div

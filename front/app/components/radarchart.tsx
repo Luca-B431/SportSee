@@ -24,11 +24,7 @@ export default function SimpleRadarChart() {
         borderRadius: 5,
       }}
     >
-      <ResponsiveContainer
-        width={350}
-        height={300}
-        className="bg-[#282D30] flex-1"
-      >
+      <ResponsiveContainer className="bg-[#282D30] flex-1">
         <RadarChart cx="50%" cy="50%" outerRadius="80%" data={data}>
           <PolarGrid stroke="#FFF" />
           <PolarAngleAxis dataKey="kind" />

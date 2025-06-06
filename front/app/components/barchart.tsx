@@ -1,8 +1,6 @@
-import React, { PureComponent } from "react";
 import {
   BarChart,
   Bar,
-  Rectangle,
   XAxis,
   YAxis,
   CartesianGrid,
@@ -10,6 +8,7 @@ import {
   Legend,
   ResponsiveContainer,
   ReferenceLine,
+  Text,
 } from "recharts";
 
 const data = [
@@ -108,71 +107,74 @@ const data = [
 
 export default function Barchart() {
   return (
-    <ResponsiveContainer height={300} className="bg-[#f5f5f5] flex-1">
-      <BarChart
-        data={data}
-        margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
-        barGap={20}
-      >
-        <CartesianGrid horizontal={false} vertical={false} />
-        <ReferenceLine y="71" stroke="#282D30" yAxisId="right" />
-        <ReferenceLine y="73" stroke="#282D30" yAxisId="right" />
-        <ReferenceLine y="2000" stroke="#E60000" yAxisId="left" />
-        <XAxis dataKey="date" tickLine={false} tickMargin={10} />
-
-        <YAxis
-          yAxisId="left"
-          tick={{ fill: "#E60000" }}
-          ticks={["2000"]}
-          axisLine={false}
-        />
-        <YAxis
-          yAxisId="right"
-          orientation="right"
-          axisLine={false}
-          tickLine={false}
-          domain={[69, 73.5]}
-          ticks={[69, 71, 73]}
-        />
-
-        <Bar
-          dataKey="calories"
-          fill="#E60000"
-          yAxisId="left"
-          barSize={10}
-          radius={[10, 10, 0, 0]}
-        />
-        <Bar
-          dataKey="poids"
-          fill="#282D30"
-          yAxisId="right"
-          barSize={10}
-          radius={[10, 10, 0, 0]}
-        />
-        <Tooltip cursor={{ fill: "rgba(0, 0, 0, 0.05)" }} />
-        <Legend
-          formatter={(value) => {
-            switch (value) {
-              case "calories":
-                return "Calories (kCal)";
-              case "poids":
-                return "Poids (kg)";
-              default:
-                return value;
-            }
-          }}
-          verticalAlign="top"
-          align="right"
-          width={230}
-          iconType="circle"
-          iconSize={8}
-          wrapperStyle={{
-            backgroundColor: "#f5f5f5",
-            borderRadius: 3,
-            lineHeight: "40px",
-          }}
-        />
-      </BarChart>
-    </ResponsiveContainer>
+    <div className="bg-[#FBFBFB] flex-1 p-4 rounded">
+      <ResponsiveContainer width="100%" height={300}>
+        <BarChart
+          data={data}
+          margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+          barGap={20}
+        >
+          <CartesianGrid horizontal={false} vertical={false} />
+          <ReferenceLine y="71" stroke="#282D30" yAxisId="right" />
+          <ReferenceLine y="73" stroke="#282D30" yAxisId="right" />
+          <ReferenceLine y="2000" stroke="#E60000" yAxisId="left" />
+          <XAxis dataKey="date" tickLine={false} tickMargin={10} />
+          <YAxis
+            yAxisId="left"
+            tick={{ fill: "#E60000" }}
+            ticks={["2000"]}
+            axisLine={false}
+          />
+          <YAxis
+            yAxisId="right"
+            orientation="right"
+            axisLine={false}
+            tickLine={false}
+            domain={[69, 73.5]}
+            ticks={[69, 71, 73]}
+          />
+          <Bar
+            dataKey="calories"
+            fill="#E60000"
+            yAxisId="left"
+            barSize={10}
+            radius={[10, 10, 0, 0]}
+          />
+          <Bar
+            dataKey="poids"
+            fill="#282D30"
+            yAxisId="right"
+            barSize={10}
+            radius={[10, 10, 0, 0]}
+          />
+          <Tooltip cursor={{ fill: "rgba(0, 0, 0, 0.05)" }} />
+          <Legend
+            formatter={(value) => {
+              switch (value) {
+                case "calories":
+                  return "Calories brûlées (kCal)";
+                case "poids":
+                  return "Poids (kg)";
+                default:
+                  return value;
+              }
+            }}
+            verticalAlign="top"
+            align="right"
+            width={300}
+            iconType="circle"
+            iconSize={8}
+            wrapperStyle={{
+              backgroundColor: "#FBFBFB",
+              borderRadius: 3,
+              lineHeight: "40px",
+            }}
+          />
+          <text x={20} y={30} fill="#20253A" fontSize={15} fontWeight="bold">
+            Activité quotidienne
+          </text>
+        </BarChart>
+      </ResponsiveContainer>
+    </div>
   );
 }
