@@ -17,6 +17,7 @@ const data = [
   { day: "V", sessionLength: 30 },
   { day: "S", sessionLength: 50 },
   { day: "D", sessionLength: 50 },
+  { day: "", sessionLength: 50 },
 ];
 
 export default function Linechart() {
@@ -72,14 +73,15 @@ export default function Linechart() {
       style={{
         overflowX: "auto",
         backgroundColor: "#FF0000",
-        width: 400,
+        width: 350,
         height: 300,
+        borderRadius: 5,
       }}
     >
-      <div style={{ width: 300, height: 300 }}>
+      <div style={{ width: 350, height: 300 }}>
         <LineChart
           data={data}
-          width={800}
+          width={700}
           height={300}
           margin={{ top: 40, right: 0, bottom: 20, left: 0 }}
         >
@@ -89,7 +91,7 @@ export default function Linechart() {
             tickLine={false}
             stroke="#FFFa"
             interval={0}
-            padding={{ left: 0, right: 70 }}
+            padding={{ left: 0, right: 0 }}
             tickFormatter={(day) => (day ? day : "")}
           />
           <YAxis hide />

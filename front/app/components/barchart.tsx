@@ -108,7 +108,7 @@ const data = [
 
 export default function Barchart() {
   return (
-    <ResponsiveContainer width={800} height={300} className="bg-[#f5f5f5]">
+    <ResponsiveContainer height={300} className="bg-[#f5f5f5] flex-1">
       <BarChart
         data={data}
         margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
