@@ -17,34 +17,13 @@ export default function Topbar() {
           >
             Accueil
           </NavLink>
-          <NavLink
-            to="/"
-            className={({ isActive }) =>
-              `text-lg font-bold px-4 py-2 ${
-                isActive ? "text-[#c10909]" : "text-white"
-              }`
-            }
-          >
+          <NavLink to="/" className="text-lg font-bold px-4 py-2 text-white">
             Profil
           </NavLink>
-          <NavLink
-            to="/"
-            className={({ isActive }) =>
-              `text-lg font-bold px-4 py-2 ${
-                isActive ? "text-[#c10909]" : "text-white"
-              }`
-            }
-          >
+          <NavLink to="/" className="text-lg font-bold px-4 py-2 text-white">
             Réglage
           </NavLink>
-          <NavLink
-            to="/"
-            className={({ isActive }) =>
-              `text-lg font-bold px-4 py-2 ${
-                isActive ? "text-[#c10909]" : "text-white"
-              }`
-            }
-          >
+          <NavLink to="/" className="text-lg font-bold px-4 py-2 text-white">
             Communauté
           </NavLink>
         </nav>

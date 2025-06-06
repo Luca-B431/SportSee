@@ -22,7 +22,7 @@ export default function SimpleRadialBarChart() {
   const percentage = data[0].value;
 
   return (
-    <div className="relative w-[350px] h-[300px] bg-[#FBFBFB] rounded-sm">
+    <div className="relative w-[250px] h-[250px] bg-[#FBFBFB] rounded-sm">
       <svg
         width="300"
         height="300"
@@ -30,9 +30,9 @@ export default function SimpleRadialBarChart() {
         style={{ transform: "translate(25px, 15px)" }}
       >
         <circle
-          cx="150"
-          cy="140"
-          r="102"
+          cx="100"
+          cy="108"
+          r="74"
           stroke="#e5e7eb"
           strokeWidth="10"
           fill="none"

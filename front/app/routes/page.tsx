@@ -47,10 +47,10 @@ export default function Home() {
           </p>
 
           {/* Graph container */}
-          <div className="grid grid-cols-[5fr_1fr] grid-rows-2 py-16 gap-8">
+          <div className="grid grid-cols-[2fr_1fr] grid-rows-2 py-16 gap-8">
             {/* Barchart Calories/Poids */}
             <Barchart />
-            <div className="flex flex-col gap-4 col-start-2 row-span-2">
+            <div className="flex flex-col items-center gap-4 col-start-2 row-span-2">
               <Tab
                 picture="calories-icon.png"
                 name="icône calories"
@@ -81,7 +81,7 @@ export default function Home() {
               />
             </div>
 
-            <div className="flex row-start-2 justify-between h-auto gap-8">
+            <div className="flex row-start-2 justify-between items-end gap-x-24 w-full">
               <Linechart />
               <SimpleRadarChart />
               <SimpleRadialBarChart />

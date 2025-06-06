@@ -20,7 +20,7 @@ export default function SimpleRadarChart() {
     <div
       style={{
         width: 350,
-        height: 300,
+        height: 250,
         borderRadius: 5,
       }}
     >

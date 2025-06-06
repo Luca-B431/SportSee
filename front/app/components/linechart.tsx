@@ -79,8 +79,8 @@ export default function Linechart() {
       style={{
         overflowX: "auto",
         backgroundColor: "#FF0000",
-        width: 350,
-        height: 300,
+        width: 250,
+        height: 250,
         borderRadius: 5,
         position: "relative",
       }}
@@ -119,10 +119,10 @@ export default function Linechart() {
         <div
           style={{
             position: "absolute",
-            top: 40,
-            right: 20,
-            color: "#FFF8",
-            fontSize: 14,
+            bottom: 55,
+            right: 10,
+            color: "#FFF6",
+            fontSize: 18,
             fontWeight: 800,
             display: "flex",
             alignItems: "center",
