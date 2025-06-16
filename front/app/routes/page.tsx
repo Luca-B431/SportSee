@@ -1,8 +1,5 @@
+import { redirect } from 'react-router';
+
 export const loader = async ({ request }: { request: Request }) => {
-  return new Response(null, {
-    status: 302,
-    headers: {
-      Location: "/user/12",
-    },
-  });
+  throw redirect('/user/12');
 };

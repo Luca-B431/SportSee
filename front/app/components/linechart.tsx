@@ -1,40 +1,29 @@
-import React, { useState } from "react";
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-} from "recharts";
-import type { TooltipProps } from "recharts";
+import React, { useState } from 'react';
+import { LineChart, Line, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import type { TooltipProps } from 'recharts';
 
-const data = [
-  { day: "", sessionLength: 30 },
-  { day: "L", sessionLength: 30 },
-  { day: "M", sessionLength: 40 },
-  { day: "M", sessionLength: 50 },
-  { day: "J", sessionLength: 30 },
-  { day: "V", sessionLength: 30 },
-  { day: "S", sessionLength: 50 },
-  { day: "D", sessionLength: 50 },
-  { day: "L", sessionLength: 30 },
-  { day: "M", sessionLength: 40 },
-  { day: "M", sessionLength: 50 },
-  { day: "J", sessionLength: 30 },
-  { day: "V", sessionLength: 30 },
-  { day: "S", sessionLength: 50 },
-  { day: "D", sessionLength: 50 },
-  { day: "", sessionLength: 50 },
-];
-
-export default function Linechart() {
+export default function Linechart({ data }: { data: { day: string; sessionLength: number }[] }) {
   const [hovered, setHovered] = useState(false);
+
+  const getExtendedData = (data: { day: string; sessionLength: number }[]) => {
+    if (data.length < 2) return data;
+    return [
+      { day: '', sessionLength: data[1].sessionLength },
+      ...data,
+      { day: '', sessionLength: data[data.length - 2].sessionLength },
+    ];
+  };
+
+  const extendedData = getExtendedData(data);
 
   const CustomLegend = () => (
     <div
-      style={{ color: "#FFF8", fontSize: 14, fontWeight: 800, paddingLeft: 20 }}
+      style={{
+        color: '#FFF8',
+        fontSize: 14,
+        fontWeight: 800,
+        paddingLeft: 20,
+      }}
     >
       Durée moyenne des <br /> sessions
     </div>
@@ -47,9 +36,13 @@ export default function Linechart() {
       if (!label) return null;
       return (
         <div
-          style={{ background: "#FFF", padding: "4px 8px", borderRadius: 4 }}
+          style={{
+            background: '#FFF',
+            padding: '4px 8px',
+            borderRadius: 4,
+          }}
         >
-          <p style={{ margin: 0, color: "#000", fontSize: 12 }}>{value} min</p>
+          <p style={{ margin: 0, color: '#000', fontSize: 12 }}>{value} min</p>
         </div>
       );
     }
@@ -59,39 +52,26 @@ export default function Linechart() {
   const customActiveDot = (props: any) => {
     const { cx, cy, r = 4, index } = props;
     if (index === 0 || cx === undefined || cy === undefined) {
-      return (
-        <circle
-          cx={cx ?? 0}
-          cy={cy ?? 0}
-          r={0}
-          fill="transparent"
-          stroke="transparent"
-        />
-      );
+      return <circle cx={cx ?? 0} cy={cy ?? 0} r={0} fill="transparent" stroke="transparent" />;
     }
-    return (
-      <circle cx={cx} cy={cy} r={r} fill="#FFF" stroke="#FFF" strokeWidth={2} />
-    );
+    return <circle cx={cx} cy={cy} r={r} fill="#FFF" stroke="#FFF" strokeWidth={2} />;
   };
 
   return (
     <div
       style={{
-        overflowX: "auto",
-        backgroundColor: "#FF0000",
+        overflowX: 'auto',
+        backgroundColor: '#FF0000',
         width: 250,
         height: 250,
         borderRadius: 5,
-        position: "relative",
+        position: 'relative',
       }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
       <ResponsiveContainer width="200%" height="100%">
-        <LineChart
-          data={data}
-          margin={{ top: 40, right: 0, bottom: 20, left: 0 }}
-        >
+        <LineChart data={extendedData} margin={{ top: 40, right: 0, bottom: 20, left: 0 }}>
           <XAxis
             dataKey="day"
             axisLine={false}
@@ -99,7 +79,7 @@ export default function Linechart() {
             stroke="#FFFa"
             interval={0}
             padding={{ left: 0, right: 0 }}
-            tickFormatter={(day) => (day ? day : "")}
+            tickFormatter={(day) => (day ? day : '')}
           />
           <YAxis hide />
           <Tooltip content={<CustomTooltip />} cursor={false} />
@@ -118,16 +98,16 @@ export default function Linechart() {
       {hovered && (
         <div
           style={{
-            position: "absolute",
+            position: 'absolute',
             bottom: 55,
             right: 10,
-            color: "#FFF6",
+            color: '#FFF6',
             fontSize: 18,
             fontWeight: 800,
-            display: "flex",
-            alignItems: "center",
+            display: 'flex',
+            alignItems: 'center',
             gap: 6,
-            userSelect: "none",
+            userSelect: 'none',
           }}
         >
           <span>Faites défiler →</span>

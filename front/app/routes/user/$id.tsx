@@ -78,9 +78,9 @@ export default function Home({ loaderData }: Route.ComponentProps) {
   }
   return (
     <>
-      <main>
-        <div className="h-screen w-full px-24 py-12">
-          <div id="content">
+      <main className="">
+        <div className="h-screen xl:px-24 py-12">
+          <div id="content " className="w-full">
             <h1 className="text-5xl font-bold pb-8">
               {' '}
               Bonjour <span className="text-[#FF0101]">{formatData[0].value}</span>{' '}
@@ -88,12 +88,12 @@ export default function Home({ loaderData }: Route.ComponentProps) {
             <p className="text-xl">Félicitations ! Vous avez explosé vos objectifs hier 👏</p>
 
             {/* Graph container */}
-            <div className="grid grid-cols-[2fr_1fr] grid-rows-2 py-16 gap-8 w-full">
+            <div className="grid grid-cols-1 xl:grid-cols-[2fr_1fr] grid-rows-3 xl:grid-rows-2 py-16 gap-8 w-full">
               {/* Barchart Calories/Poids */}
               <Barchart data={data.activity.data.sessions} />
 
               {/* Tabs container */}
-              <div className="flex flex-col items-center gap-4 col-start-2 row-span-2 w-full">
+              <div className="flex xl:flex-col h-auto items-center xl:gap-4 xl:col-start-2 xl:row-span-2">
                 <Tab
                   picture="/calories-icon.png"
                   name="icône calories"
@@ -125,8 +125,8 @@ export default function Home({ loaderData }: Route.ComponentProps) {
               </div>
 
               <div className="flex row-start-2 justify-between items-end gap-x-4 w-full">
-                <Linechart />
-                <SimpleRadarChart />
+                <Linechart data={data.averageSessions.data.sessions} />
+                <SimpleRadarChart performance={data.performance.data} />
                 <SimpleRadialBarChart score={formatData[7].value} />
               </div>
             </div>

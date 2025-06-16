@@ -1,0 +1,96 @@
+{
+  "buildManifest": {
+    "serverBundles": {
+      "nodejs_eyJydW50aW1lIjoibm9kZWpzIn0": {
+        "id": "nodejs_eyJydW50aW1lIjoibm9kZWpzIn0",
+        "file": "build/server/nodejs_eyJydW50aW1lIjoibm9kZWpzIn0/index.js",
+        "config": {
+          "runtime": "nodejs"
+        }
+      }
+    },
+    "routeIdToServerBundleId": {
+      "root": "nodejs_eyJydW50aW1lIjoibm9kZWpzIn0",
+      "page": "nodejs_eyJydW50aW1lIjoibm9kZWpzIn0",
+      "user/$id": "nodejs_eyJydW50aW1lIjoibm9kZWpzIn0"
+    },
+    "routes": {
+      "root": {
+        "path": "",
+        "id": "root",
+        "file": "app/root.tsx",
+        "config": {
+          "runtime": "nodejs"
+        }
+      },
+      "layouts/layout": {
+        "id": "layouts/layout",
+        "parentId": "root",
+        "file": "app/layouts/layout.tsx",
+        "config": {}
+      },
+      "page": {
+        "id": "page",
+        "parentId": "layouts/layout",
+        "file": "app/page.tsx",
+        "index": true,
+        "config": {}
+      },
+      "user/$id": {
+        "id": "user/$id",
+        "parentId": "layouts/layout",
+        "file": "app/user/$id.tsx",
+        "path": "user/:id",
+        "config": {}
+      }
+    }
+  },
+  "reactRouterConfig": {
+    "appDirectory": "/Users/maison/Documents/Luca/Code/SportSee/front/app",
+    "basename": "/",
+    "buildDirectory": "/Users/maison/Documents/Luca/Code/SportSee/front/build",
+    "future": {
+      "unstable_middleware": false,
+      "unstable_optimizeDeps": false,
+      "unstable_splitRouteModules": false,
+      "unstable_subResourceIntegrity": false,
+      "unstable_viteEnvironmentApi": false
+    },
+    "routes": {
+      "root": {
+        "path": "",
+        "id": "root",
+        "file": "root.tsx"
+      },
+      "layouts/layout": {
+        "id": "layouts/layout",
+        "parentId": "root",
+        "file": "layouts/layout.tsx"
+      },
+      "page": {
+        "id": "page",
+        "parentId": "layouts/layout",
+        "file": "page.tsx",
+        "index": true
+      },
+      "user/$id": {
+        "id": "user/$id",
+        "parentId": "layouts/layout",
+        "file": "user/$id.tsx",
+        "path": "user/:id"
+      }
+    },
+    "routeDiscovery": {
+      "mode": "lazy",
+      "manifestPath": "/__manifest"
+    },
+    "serverBuildFile": "index.js",
+    "serverModuleFormat": "esm",
+    "ssr": true
+  },
+  "viteConfig": {
+    "build": {
+      "assetsDir": "assets"
+    }
+  }
+}
