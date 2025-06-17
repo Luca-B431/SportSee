@@ -12,7 +12,7 @@ export default function Tab({
   itemName: string;
 }) {
   return (
-    <div className="flex items-center justify-center w-auto h-24 xl:h-full bg-[#FBFBFB] p-8 rounded-sm">
+    <div className="flex items-center justify-center w-auto xl:min-w-96 h-24 xl:h-full bg-[#FBFBFB] p-8 rounded-sm">
       <img src={picture} alt={name} className="w-16 h-16 transform hover:scale-140 transition-transform duration-300" />
       <div className="flex flex-col pl-6">
         <h2 className="text-xl font-semibold text-gray-800">

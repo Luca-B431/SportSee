@@ -5,12 +5,14 @@ import type { TooltipProps } from 'recharts';
 export default function Linechart({ data }: { data: { day: string; sessionLength: number }[] }) {
   const [hovered, setHovered] = useState(false);
 
+  const days = ['L', 'M', 'M', 'J', 'V', 'S', 'D'];
+
   const getExtendedData = (data: { day: string; sessionLength: number }[]) => {
     if (data.length < 2) return data;
     return [
       { day: '', sessionLength: data[1].sessionLength },
       ...data,
-      { day: '', sessionLength: data[data.length - 2].sessionLength },
+      { day: '', sessionLength: data[data.length - 1].sessionLength },
     ];
   };
 
@@ -70,16 +72,17 @@ export default function Linechart({ data }: { data: { day: string; sessionLength
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      <ResponsiveContainer width="200%" height="100%">
-        <LineChart data={extendedData} margin={{ top: 40, right: 0, bottom: 20, left: 0 }}>
+      <ResponsiveContainer width="100%" height="100%">
+        <LineChart data={extendedData} margin={{ top: 20, right: 0, bottom: 30, left: 0 }}>
           <XAxis
             dataKey="day"
             axisLine={false}
             tickLine={false}
             stroke="#FFFa"
             interval={0}
+            tick={{ dy: 30 }}
             padding={{ left: 0, right: 0 }}
-            tickFormatter={(day) => (day ? day : '')}
+            tickFormatter={(day) => days[parseInt(day) - 1] || ''}
           />
           <YAxis hide />
           <Tooltip content={<CustomTooltip />} cursor={false} />
@@ -94,25 +97,6 @@ export default function Linechart({ data }: { data: { day: string; sessionLength
           />
         </LineChart>
       </ResponsiveContainer>
-
-      {hovered && (
-        <div
-          style={{
-            position: 'absolute',
-            bottom: 55,
-            right: 10,
-            color: '#FFF6',
-            fontSize: 18,
-            fontWeight: 800,
-            display: 'flex',
-            alignItems: 'center',
-            gap: 6,
-            userSelect: 'none',
-          }}
-        >
-          <span>Faites défiler →</span>
-        </div>
-      )}
     </div>
   );
 }
