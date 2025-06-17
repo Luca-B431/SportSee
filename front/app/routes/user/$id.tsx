@@ -6,56 +6,31 @@ import Linechart from '~/components/linechart';
 import SimpleRadarChart from '~/components/radarchart';
 import SimpleRadialBarChart from '~/components/radialbarchart';
 import Tab from '~/components/tab';
+import { fetchUserData, fetchUserActivity, fetchUserAverageSessions, fetchUserPerformance } from '~/services/api';
 
 export async function loader({ params }: Route.LoaderArgs) {
-  // call 1
-  const response1 = await fetch(`http://localhost:3000/user/${params.id}`);
-  if (!response1.ok) throw new Response('First Call, Not Found', { status: 404 });
-  const { data: userData }: { data: UserData } = await response1.json();
-
-  // call 2
-  const response2 = await fetch(`http://localhost:3000/user/${params.id}/activity`);
-  if (!response2.ok) throw new Response('Second Call, Activity Not Found', { status: 404 });
-  const data2 = await response2.json();
-
-  // call 3
-  const response3 = await fetch(`http://localhost:3000/user/${params.id}/average-sessions`);
-  if (!response3.ok) throw new Response('Third Call, Session Not Found', { status: 404 });
-  const data3 = await response3.json();
-
-  // call 4
-  const response4 = await fetch(`http://localhost:3000/user/${params.id}/performance`);
-  if (!response4.ok) throw new Response('Fourth Call, Performance Not Found', { status: 404 });
-  const data4 = await response4.json();
+  // const userData = await fetchUserData(params.id);
+  // const activity = await fetchUserActivity(params.id);
+  // const averageSessions = await fetchUserAverageSessions(params.id);
+  // const performance = await fetchUserPerformance(params.id);
+  const [userData, activity, averageSessions, performance] = await Promise.all([
+    fetchUserData(params.id),
+    fetchUserActivity(params.id),
+    fetchUserAverageSessions(params.id),
+    fetchUserPerformance(params.id),
+  ]);
 
   return {
     firstData: userData,
-    activity: data2,
-    averageSessions: data3,
-    performance: data4,
+    activity,
+    averageSessions,
+    performance,
   };
 }
 
 export function meta({}: Route.MetaArgs) {
   return [{ title: 'SportSee Application' }, { name: 'description', content: 'Welcome to SportSee!' }];
 }
-
-type UserData = {
-  id: number;
-  userInfos: {
-    age: number;
-    firstName: string;
-    lastName: string;
-  };
-  todayScore?: number;
-  score?: number;
-  keyData: {
-    calorieCount: number;
-    proteinCount: number;
-    carbohydrateCount: number;
-    lipidCount: number;
-  };
-};
 
 export default function Home({ loaderData }: Route.ComponentProps) {
   const data = loaderData;
@@ -68,10 +43,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
     );
   }
 
-  console.log(data);
   const formatData = flattenData(data.firstData);
-  console.log(formatData);
-  console.log(data.activity.data.sessions);
 
   if (!data?.firstData) {
     console.error('firstData is missing in loaderData');
