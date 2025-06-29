@@ -55,12 +55,26 @@ export default function Barchart({ data }: { data: ActivityData[] }) {
           <Bar dataKey="calories" fill="#E60000" yAxisId="left" barSize={10} radius={[10, 10, 0, 0]} />
           <Bar dataKey="kilogram" fill="#282D30" yAxisId="right" barSize={10} radius={[10, 10, 0, 0]} />
           <Tooltip
-            cursor={{ fill: 'rgba(0, 0, 0, 0.05)' }}
-            formatter={(value, name) => {
-              if (name === 'kilogram') return [`${value} kg`, 'Kilogrammes'];
-              if (name === 'calories') return [`${value} kCal`, 'Calories brûlées'];
-              return [value, name];
+            content={({ active, payload }) => {
+              if (active && payload && payload.length >= 2) {
+                return (
+                  <div
+                    style={{
+                      background: '#E60000',
+                      color: '#fff',
+                      padding: 12,
+                      fontWeight: 500,
+                      fontSize: 12,
+                    }}
+                  >
+                    <div style={{ color: '#fff' }}>{payload[1].value}kg</div>
+                    <div style={{ color: '#fff' }}>{payload[0].value} kCal</div>
+                  </div>
+                );
+              }
+              return null;
             }}
+            cursor={{ fill: 'rgba(0, 0, 0, 0.05)' }}
           />
           <Legend
             formatter={(value) => {
